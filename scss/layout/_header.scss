@@ -1,0 +1,200 @@
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 20px 0;
+	font-family: $font-kr;
+	font-size: 14px;
+	color: $text;
+	background-color: rgba($color: #fff, $alpha: 0);
+	z-index: 5;
+
+	@include mobile {
+		background-color: rgba($color: #fff, $alpha: 1);
+		padding: 0;
+	}
+
+	.inner {
+		max-width: 1140px;
+		position: relative;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 20px;
+
+		@include mobile {
+			width: 100%;
+			max-width: 100%;
+			background-color: #fff;
+			padding: 20px;
+		}
+	}
+
+	.logo {
+		svg {
+			width: auto;
+			height: 20px;
+		}
+	}
+
+	.group-flex {
+		display: flex;
+	}
+
+	.menu-area {
+		margin-right: 100px;
+
+		@include mobile {
+			display: block;
+			position: absolute;
+			top: -340px;
+			left: 0;
+			margin-top: 60px;
+			width: 100%;
+			z-index: -1;
+			background-color: #fff;
+			transition: top 0.5s;
+		}
+	}
+
+	.menu-list {
+		display: flex;
+
+		@include mobile {
+			flex-direction: column;
+		}
+	}
+
+	.menu-item {
+		position: relative;
+		transition: transform 0.3s;
+		font-weight: 500;
+
+		&::after {
+			content: '';
+			display: block;
+			position: absolute;
+			bottom: -3px;
+			left: 0;
+			width: 0%;
+			height: 2px;
+			background-color: $blue;
+			transition: width 0.3s;
+			@include mobile {
+				display: none;
+			}
+		}
+		a {
+			display: block;
+		}
+		& + .menu-item {
+			margin-left: 20px;
+
+			@include mobile {
+				margin-left: 0;
+			}
+		}
+
+		&:hover {
+			&::after {
+				width: 100%;
+			}
+		}
+
+		@include mobile {
+			padding: 20px 0 20px 20px;
+			font-size: 18px;
+			font-weight: 700;
+			& + .menu-item {
+				border-top: 1px solid #e5e8ea;
+			}
+		}
+	}
+
+	.util-area {
+		@include mobile {
+			display: none;
+		}
+	}
+
+	.util-btn {
+		position: relative;
+		color: #d1d6db;
+		&.active {
+			color: $text;
+		}
+		& + .util-btn {
+			margin-left: 30px;
+			&::after {
+				content: '';
+				position: absolute;
+				top: 50%;
+				left: -18px;
+				transform: translateY(-40%);
+				display: inline-block;
+				width: 1px;
+				height: 15px;
+				background-color: #d1d6db;
+			}
+		}
+	}
+
+	.m-btn {
+		display: none;
+		@include mobile {
+			display: flex;
+			flex-direction: column;
+			width: 30px;
+			cursor: pointer;
+			z-index: 2;
+
+			span {
+				display: block;
+				background: $text;
+				border-radius: 10px;
+				height: 2px;
+				margin: 3px 0;
+				transition: 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+
+				&:nth-of-type(1) {
+					width: 50%;
+				}
+
+				&:nth-of-type(2) {
+					width: 100%;
+				}
+
+				&:nth-of-type(3) {
+					width: 75%;
+				}
+			}
+
+			&.active {
+				span {
+					&:nth-of-type(1) {
+						transform-origin: bottom right;
+						transform: rotateZ(45deg) translate(5px, 6px);
+					}
+
+					&:nth-of-type(2) {
+						transform-origin: top;
+						transform: rotateZ(-45deg);
+					}
+
+					&:nth-of-type(3) {
+						transform-origin: top left;
+						width: 50%;
+						transform: translate(15px, -8px) rotateZ(45deg);
+					}
+				}
+			}
+		}
+	}
+
+	&.active {
+		.menu-area {
+			top: 0;
+		}
+	}
+}
