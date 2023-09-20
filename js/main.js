@@ -2,7 +2,6 @@ $(function () {
 	const mobile = 768;
 
 	// 헤더 스크롤
-
 	const headerAni = gsap
 		.from('.header', {
 			yPercent: -100,
@@ -32,14 +31,12 @@ $(function () {
 			gsap.to('.header', {
 				'background-color': 'rgba(255,255,255, 0.9)',
 				'backdrop-filter': 'blur(10px)',
-
 				'border-bottom': '1px solid #e5e8ea',
 			});
 		}
 	});
 
 	// 햄버거 매뉴
-
 	$('.m-btn').click(function () {
 		$(this).toggleClass('active');
 		$('.header').toggleClass('active');
@@ -51,14 +48,12 @@ $(function () {
 	});
 
 	// 메인 동영상 재생 2.5초 후 텍스트 올라오게
-
 	gsap.set('.sc-visual .content-area', {
 		opacity: 0,
 		y: 100,
 	});
 
-	if ($(window).width() >= 769) {
-		//768px 이상
+	if ($(window).width() >= 769) { //768px 이상
 		setTimeout(() => {
 			gsap.to('.sc-visual .content-area', {
 				duration: 2,
@@ -75,13 +70,12 @@ $(function () {
 	}
 
 	//메인 동영상
-
 	if ($(window).width() <= mobile) {
 		const video = $('.video-area video');
 		video.get(0).pause();
 	}
-	// Info 텍스트 한 줄씩 올라오게
 
+	// Info 텍스트 한 줄씩 올라오게
 	const infoText = $('.sc-info .sc-title p');
 
 	infoText.each((idx, el) => {
@@ -97,7 +91,6 @@ $(function () {
 	});
 
 	// about 텍스트 한줄씩 올라오고 (스크롤), 카운트
-
 	function format_number(x) {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 	}
@@ -114,36 +107,29 @@ $(function () {
 				end: '+=100',
 			},
 		});
-		numEffect
-			.addLabel('a')
+		numEffect.addLabel('a').from(value, {
+			duration: 2,
+			ease: 'circ.out',
+			val: 0,
+			roundProps: 'val',
+			onUpdate: function () {
+				el.innerText = format_number(value.val);
+			},
+		},
+			'a'
+		)
 			.from(
-				value,
-				{
-					duration: 2,
-					ease: 'circ.out',
-					val: 0,
-					roundProps: 'val',
-					onUpdate: function () {
-						el.innerText = format_number(value.val);
-					},
-				},
-				'a'
-			)
-			.from(
-				$(this).parents('.about-item'),
-				{
-					opacity: 0,
-					y: 50,
-				},
+				$(this).parents('.about-item'), {
+				opacity: 0,
+				y: 50,
+			},
 				'a'
 			);
 	});
 
 	// 서비스 각 섹션별 텍스트 위로 올라오게
-
 	$('.sc-service .title-area').each(function (idx, el) {
 		const child = $(this).find('> *');
-
 		gsap.from(child, {
 			scrollTrigger: {
 				trigger: el,
@@ -156,7 +142,6 @@ $(function () {
 	});
 
 	// 송금
-
 	$('.wire-item').each(function (i, el) {
 		gsap.from(el, {
 			opacity: 0,
@@ -170,7 +155,6 @@ $(function () {
 	});
 
 	// 투자
-
 	gsap.to('.investment .ico-box', {
 		xPercent: -500,
 		scrollTrigger: {
@@ -182,7 +166,6 @@ $(function () {
 	});
 
 	// 가로 스크롤
-
 	let totalWidth = 0;
 	const visionEls = $('.vision-item');
 	const visionElWidth = $('.vision-item').innerWidth();
@@ -212,11 +195,9 @@ $(function () {
 	}
 
 	// 무한 롤링 배너 (배너 클론으로 복사)
-
 	$('.investor-list').clone().appendTo('.sc-investor .rolling-area');
 
 	// 탭 매뉴
-
 	const btns = $('.loan .sub-title-area span');
 	const imgs = $('.loan .screen-img img');
 	btns.click(function (e) {
@@ -229,7 +210,6 @@ $(function () {
 	});
 
 	// 투자자 캔버스
-
 	const canvas = document.querySelector('canvas');
 	const ctx = canvas.getContext('2d');
 
@@ -239,13 +219,11 @@ $(function () {
 	const frameCount = 100;
 
 	const currentFrame = (idx) => {
-		return `img/capture/capture${idx.toString()}.jpg`;
-	}; // 리턴 필수
+		return `img/capture/capture${idx.toString()}.jpg`; // 리턴 필수
+	};
 
 	const images = [];
-	const card = {
-		frame: 0,
-	};
+	const card = { frame: 0, };
 
 	for (let i = 0; i < frameCount; i++) {
 		const img = new Image();
@@ -274,7 +252,6 @@ $(function () {
 	}
 
 	// 숫자 카운트 부분 배경 애니메이션
-
 	const bgEffect = gsap.timeline({
 		scrollTrigger: {
 			trigger: '.sc-about',
@@ -284,11 +261,10 @@ $(function () {
 		},
 	});
 
-	bgEffect
-		.to('.sc-about .bg', {
-			'width': '100%',
-			'border-radius': 0,
-		})
+	bgEffect.to('.sc-about .bg', {
+		'width': '100%',
+		'border-radius': 0,
+	})
 		.to('.sc-about .bg', {
 			'width': '100%',
 			'border-radius': 0,
@@ -299,7 +275,6 @@ $(function () {
 		});
 
 	// 투자부분 텍스트
-
 	gsap.from('.investment .desc-area', {
 		opacity: 0,
 		y: 100,

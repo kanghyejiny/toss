@@ -133,29 +133,13 @@ input::-moz-placeholder, textarea::-moz-placeholder {
   color: #444;
   opacity: 1;
 }
-input:-ms-input-placeholder, textarea:-ms-input-placeholder {
-  /* Chrome, Safari, Firefox */
-  color: #444;
-  opacity: 1;
-}
 input::placeholder,
 textarea::placeholder {
   /* Chrome, Safari, Firefox */
   color: #444;
   opacity: 1;
 }
-input:-ms-input-placeholder,
-textarea:-ms-input-placeholder {
-  /* IE, Edge */
-  color: #444;
-  opacity: 1;
-}
 input[readonly]::-moz-placeholder, input:disabled::-moz-placeholder, textarea[readonly]::-moz-placeholder, textarea:disabled::-moz-placeholder {
-  /* Chrome, Safari, Firefox */
-  color: rgba(0, 0, 0, 0.2);
-  opacity: 1;
-}
-input[readonly]:-ms-input-placeholder, input:disabled:-ms-input-placeholder, textarea[readonly]:-ms-input-placeholder, textarea:disabled:-ms-input-placeholder {
   /* Chrome, Safari, Firefox */
   color: rgba(0, 0, 0, 0.2);
   opacity: 1;
@@ -191,13 +175,14 @@ ol {
   list-style: none;
 }
 
-.blind {
+.hide {
+  overflow: hidden;
+  display: block;
   position: absolute;
+  border: 0;
   width: 1px;
   height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  margin: -1px;
+  clip: rect(1px, 1px, 1px, 1px);
 }
 
 .inner {
@@ -1305,14 +1290,6 @@ section {
     font-size: 18px;
   }
 }
-@-webkit-keyframes rolling {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
 @keyframes rolling {
   0% {
     transform: translateX(0%);
@@ -1329,10 +1306,9 @@ section {
 }
 .sc-investor .investor-list {
   display: flex;
-  -webkit-animation: rolling 40s linear infinite;
-          animation: rolling 40s linear infinite;
+  animation: rolling 40s linear infinite;
 }
 .sc-investor .investor-item {
   width: 260px;
   height: auto;
-}
+}/*# sourceMappingURL=style.css.map */
